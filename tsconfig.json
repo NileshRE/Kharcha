@@ -1,17 +1,19 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "paths": { "@/*": ["./*"] }
   },
+  "extends": "expo/tsconfig.base",
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts",
+    "app/dashboard/(tabs)/index.jsx",
+    "app/dashboard/(tabs)/_layout.jsx",
+    "app/dashboard/(tabs)/expenses.jsx",
+    "app/dashboard/(tabs)/investments.jsx",
+    "app/dashboard/(tabs)/analysis.jsx",
+    "app/dashboard/profile/profile.jsx"
   ]
 }
