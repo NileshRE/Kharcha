@@ -9,11 +9,10 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts",
-    "app/dashboard/(tabs)/index.jsx",
-    "app/dashboard/(tabs)/_layout.jsx",
-    "app/dashboard/(tabs)/expenses.jsx",
-    "app/dashboard/(tabs)/investments.jsx",
-    "app/dashboard/(tabs)/analysis.jsx",
-    "app/dashboard/profile/profile.jsx"
+    "app/dashboard/index.jsx",
+    "app/dashboard/_layout.jsx",
+    "app/dashboard/expenses.jsx",
+    "app/dashboard/investments.jsx",
+    "app/home/profile.jsx"
   ]
 }

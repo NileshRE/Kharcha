@@ -1,11 +1,38 @@
-import { Stack } from "expo-router";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { withLayoutContext } from "expo-router";
+
+// Create the top tab navigator
+const Tab = createMaterialTopTabNavigator();
+
+// Wrap with expo-router layout context
+const TopTabs = withLayoutContext(Tab.Navigator);
 
 export default function DashboardLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="profile" options={{ title: "Profile" }} />
-      <Stack.Screen name="notification" options={{ title: "Notifications" }} />
-    </Stack>
+    <TopTabs
+      id={undefined}
+      screenOptions={({ route }) => ({
+        tabBarLabel: formatLabel(route.name),
+        tabBarScrollEnabled: true,
+        tabBarActiveTintColor: "#008000",
+        tabBarLabelStyle: { fontWeight: "bold", fontSize: 14 },
+        tabBarIndicatorStyle: { backgroundColor: "#008000" },
+        tabBarStyle: {
+          backgroundColor: "#f7fcfe",
+          overflow: "scroll",
+        },
+      })}
+    >
+      <TopTabs.Screen name="expenses" />
+      <TopTabs.Screen name="investments" />
+      <TopTabs.Screen name="outstandings" />
+      <TopTabs.Screen name="income" />
+    </TopTabs>
   );
+}
+
+// Helper to capitalize first letter or rename index to Dashboard
+function formatLabel(name: string) {
+  if (name === "index") return "Dashboard";
+  return name.charAt(0).toUpperCase() + name.slice(1);
 }
