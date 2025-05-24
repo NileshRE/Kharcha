@@ -19,7 +19,7 @@ export default function RootLayout() {
           },
           headerTintColor: "#fff",
           headerRight: () => (
-            <View style={{ flexDirection: "row", marginRight: 8 }}>
+            <View style={{ flexDirection: "row", paddingRight: 8 }}>
               <TouchableOpacity onPress={() => router.push("/notification")}>
                 <Ionicons name="notifications-outline" size={24} color="#fff" />
               </TouchableOpacity>

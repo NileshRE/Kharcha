@@ -27,6 +27,7 @@ export default function DashboardLayout() {
       <TopTabs.Screen name="investments" />
       <TopTabs.Screen name="outstandings" />
       <TopTabs.Screen name="income" />
+      <TopTabs.Screen name="tools" />
     </TopTabs>
   );
 }

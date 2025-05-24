@@ -1,5 +1,6 @@
 import ExpenseCard from "@/components/expense-card";
 import FilterButton from "@/components/filter-button";
+import FloatingCTA from "@/components/floating-cta";
 import { outstandingData } from "@/utils/constants";
 import { FlatList, ScrollView, View } from "react-native";
 
@@ -31,6 +32,7 @@ export default function DashboardOutstanding() {
           />
         )}
       />
+      <FloatingCTA />
     </View>
   );
 }
