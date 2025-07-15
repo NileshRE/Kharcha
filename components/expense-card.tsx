@@ -33,7 +33,12 @@ export default function ExpenseCard({
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
-
+  const dateFormatted = new Date(date).toLocaleDateString("en-IN", {
+    weekday: "short",
+    month: "short",
+    day: "2-digit",
+    year: "2-digit",
+  });
   const borderColor = (status: string) => {
     return status === "Completed"
       ? "border-green-500 border-2"
@@ -50,13 +55,15 @@ export default function ExpenseCard({
       </View>
       <View className="flex flex-row justify-between items-start flex-1">
         <View>
-          <Text className="font-bold text-xl">{amount}</Text>
-          <Text className="text-lg text-gray-700">{category}</Text>
+          <Text className="font-bold text-xl">₹ {amount}</Text>
+          <Text className="text-lg text-gray-700 font-medium capitalize">
+            {category}
+          </Text>
           <Text className=" text-gray-500">{subcategory}</Text>
         </View>
         <View className="items-end">
-          <Text className="mb-1">{date}</Text>
-          {mode === "Online" ? (
+          <Text className="mb-1">{dateFormatted}</Text>
+          {mode === "online" ? (
             <FontAwesome name="mobile" size={24} color="orange" />
           ) : (
             <FontAwesome name="money" size={24} color="green" />

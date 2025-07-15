@@ -1,13 +1,12 @@
 import ExpenseCard from "@/components/expense-card";
-import FilterButton from "@/components/filter-button";
 import FloatingCTA from "@/components/floating-cta";
 import { incomeData } from "@/utils/constants";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, View } from "react-native";
 
 export default function DashboardIncome() {
   return (
-    <View className="mx-2 mb-12">
-      <ScrollView
+    <View className="mx-2 mb-12 h-full">
+      {/* <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         className="flex-row mt-3"
@@ -17,7 +16,7 @@ export default function DashboardIncome() {
         <FilterButton btnName={"Sell"} />
         <FilterButton btnName={"Cashback"} />
         <FilterButton btnName={"Teaching"} />
-      </ScrollView>
+      </ScrollView> */}
       <FlatList
         data={incomeData}
         keyExtractor={(item) => item.id}

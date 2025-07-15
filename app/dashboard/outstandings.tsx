@@ -1,13 +1,12 @@
 import ExpenseCard from "@/components/expense-card";
-import FilterButton from "@/components/filter-button";
 import FloatingCTA from "@/components/floating-cta";
 import { outstandingData } from "@/utils/constants";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, View } from "react-native";
 
 export default function DashboardOutstanding() {
   return (
-    <View className="mx-2 mb-12">
-      <ScrollView
+    <View className="mx-2 mb-12 h-full">
+      {/* <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         className="flex-row mt-3"
@@ -16,7 +15,7 @@ export default function DashboardOutstanding() {
         <FilterButton btnName={"Borrowed"} />
         <FilterButton btnName={"Pending"} />
         <FilterButton btnName={"Completed"} />
-      </ScrollView>
+      </ScrollView> */}
       <FlatList
         data={outstandingData}
         keyExtractor={(item) => item.id}
