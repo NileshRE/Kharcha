@@ -12,10 +12,10 @@ function FilterButton({
 }) {
   return (
     <TouchableOpacity
-      className="px-3 py-2 border border-gray-300 rounded-full mx-2 flex-row items-center gap-2"
+      className="px-4 py-2 border border-gray-300 rounded-full mx-2 flex-row items-center gap-2"
       onPress={() => handleFilter(btnName)}
     >
-      <Text className="text-base">{btnName}</Text>
+      <Text className="text-base capitalize">{btnName}</Text>
       {isSelected && <AntDesign name="close" size={20} color={"gray"} />}
     </TouchableOpacity>
   );

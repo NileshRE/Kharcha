@@ -40,6 +40,33 @@ export default function RootLayout() {
             ),
           }}
         />
+        <Stack.Screen
+          name="add/expense/index"
+          options={{
+            title: "Add Expense",
+            headerStyle: {
+              backgroundColor: "#008000",
+            },
+            headerTintColor: "#fff",
+            headerRight: () => (
+              <View style={{ flexDirection: "row", paddingRight: 8 }}>
+                <TouchableOpacity onPress={() => router.push("/notification")}>
+                  <Ionicons
+                    name="notifications-outline"
+                    size={24}
+                    color="#fff"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => router.push("/profile")}
+                  style={{ marginLeft: 16 }}
+                >
+                  <FontAwesome name="user-circle" size={24} color="#fff" />
+                </TouchableOpacity>
+              </View>
+            ),
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   );

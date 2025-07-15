@@ -2,17 +2,32 @@ import { supabase } from "@/utils/supabase";
 import { ExpenseAddType, InvestmentAddType } from "@/utils/types";
 
 class Expenses {
-  async fetchExpense(category: string) {
-    const query = supabase
+  async fetchExpense(category?: string) {
+    let query = supabase
       .from("expenses")
       .select("*")
       .order("created_at", { ascending: false });
+
     if (category) {
-      query.eq("category", category);
+      query = query.eq("category", category);
     }
-    const { data, error } = await query;
-    if (error) throw error;
-    return data;
+
+    const { data: expenseData, error: expenseError } = await query;
+
+    if (expenseError) throw expenseError;
+
+    // Server-side total sum
+    const { data: sumData, error: sumError } = await supabase.rpc(
+      "get_total_expense",
+      { category: category ?? null }
+    );
+
+    if (sumError) throw sumError;
+
+    return {
+      expenses: expenseData,
+      totalAmount: sumData,
+    };
   }
   async addExpense(expenseObject: ExpenseAddType) {
     const { data, error } = await supabase
