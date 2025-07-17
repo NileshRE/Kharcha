@@ -11,7 +11,6 @@ type ExpenseAddType = {
 type InvestmentAddType = {
   category: string;
   amount: number;
-  sub_category: string;
   icon: string;
   mode: PaymentMode;
 };

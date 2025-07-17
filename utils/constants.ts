@@ -195,3 +195,10 @@ const outstandingData = [
 ];
 
 export { incomeData, outstandingData };
+
+export const actionsMessages = {
+  expenseAddSuccess: "Successfully Added New Expense!",
+  expenseAddError: "Unable to add expense!",
+  investmentAddSuccess: "Successfully Added New Investment!",
+  investmentAddError: "Unable to add investment!",
+};

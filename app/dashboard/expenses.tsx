@@ -16,7 +16,6 @@ export default function Expenses() {
     expenseData,
     expenseError,
     expenseLoading,
-    // addMutation,
     categoryData,
     categoryLoading,
     handleFilterCategory,
@@ -51,6 +50,7 @@ export default function Expenses() {
         <EmptyState type="Expenses" />
       ) : (
         <FlatList
+          className="mb-32"
           data={expenseData?.expenses}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (

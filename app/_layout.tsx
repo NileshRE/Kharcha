@@ -1,13 +1,11 @@
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import HeaderRightButtons from "@/components/header-right-buttons";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Stack, useRouter } from "expo-router";
-import { TouchableOpacity, View } from "react-native";
+import { Stack } from "expo-router";
 import "../globals.css";
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  const router = useRouter();
   return (
     <QueryClientProvider client={queryClient}>
       <Stack>
@@ -21,23 +19,7 @@ export default function RootLayout() {
               backgroundColor: "#008000",
             },
             headerTintColor: "#fff",
-            headerRight: () => (
-              <View style={{ flexDirection: "row", paddingRight: 8 }}>
-                <TouchableOpacity onPress={() => router.push("/notification")}>
-                  <Ionicons
-                    name="notifications-outline"
-                    size={24}
-                    color="#fff"
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => router.push("/profile")}
-                  style={{ marginLeft: 16 }}
-                >
-                  <FontAwesome name="user-circle" size={24} color="#fff" />
-                </TouchableOpacity>
-              </View>
-            ),
+            headerRight: () => <HeaderRightButtons />,
           }}
         />
         <Stack.Screen
@@ -48,23 +30,18 @@ export default function RootLayout() {
               backgroundColor: "#008000",
             },
             headerTintColor: "#fff",
-            headerRight: () => (
-              <View style={{ flexDirection: "row", paddingRight: 8 }}>
-                <TouchableOpacity onPress={() => router.push("/notification")}>
-                  <Ionicons
-                    name="notifications-outline"
-                    size={24}
-                    color="#fff"
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => router.push("/profile")}
-                  style={{ marginLeft: 16 }}
-                >
-                  <FontAwesome name="user-circle" size={24} color="#fff" />
-                </TouchableOpacity>
-              </View>
-            ),
+            headerRight: () => <HeaderRightButtons />,
+          }}
+        />
+        <Stack.Screen
+          name="add/investment/index"
+          options={{
+            title: "Add Investment",
+            headerStyle: {
+              backgroundColor: "#008000",
+            },
+            headerTintColor: "#fff",
+            headerRight: () => <HeaderRightButtons />,
           }}
         />
       </Stack>

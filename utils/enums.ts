@@ -1,3 +1,16 @@
+enum AppRoutes {
+  HOME = "/",
+  EXPENSESDBOARD = "/dashboard/expenses",
+  INVESTMENTSDBOARD = "/dashboard/investments",
+  OUTSTANDINGSDBOARD = "/dashboard/outstandings",
+  INCOMESDBOARD = "/dashboard/income",
+  ADDEXPENSES = "/add/expense",
+  ADDINVESTMENTS = "/add/investment",
+  LOGIN = "/login",
+  PROFILE = "/profile",
+  NOTIFICATION = "/notification",
+}
+
 enum PaymentMode {
   CASH = "cash",
   ONLINE = "online",
@@ -91,4 +104,22 @@ enum CategoryIcon {
   HELP = "help-circle",
 }
 
-export { Category, CategoryIcon, PaymentMode, SubCategory };
+enum InvestmentCategory {
+  STOCKS = "stocks",
+  MUTUAL_FUNDS = "mutual-funds",
+  REAL_ESTATE = "real-estate",
+  CRYPTO = "crypto",
+  BONDS = "bonds",
+  GOLD = "gold",
+  PPF = "ppf",
+  FD = "fixed-deposit",
+  OTHER = "other-investments",
+}
+export {
+  AppRoutes,
+  Category,
+  CategoryIcon,
+  InvestmentCategory,
+  PaymentMode,
+  SubCategory,
+};

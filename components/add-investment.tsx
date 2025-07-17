@@ -1,8 +1,8 @@
-import { Expenses } from "@/lib/api";
+import { Investments } from "@/lib/api";
 import { actionsMessages } from "@/utils/constants";
-import { AppRoutes, Category, PaymentMode } from "@/utils/enums";
-import { ExpenseFormData, expenseSchema } from "@/utils/schemas";
-import { CategoryIconMap, CategorySubCategoryMap } from "@/utils/utlis";
+import { AppRoutes, InvestmentCategory, PaymentMode } from "@/utils/enums";
+import { InvestmentFormData, investmentSchema } from "@/utils/schemas";
+import { CategoryIconMap } from "@/utils/utlis";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Picker } from "@react-native-picker/picker";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -12,8 +12,8 @@ import { Controller, useForm } from "react-hook-form";
 import { Text, TextInput, View } from "react-native";
 import { Avatar, Button, RadioButton, Snackbar } from "react-native-paper";
 
-export default function AddExpenseForm() {
-  const expenses = new Expenses();
+export default function AddInvestmentForm() {
+  const investments = new Investments();
   const queryClient = useQueryClient();
   const {
     control,
@@ -22,38 +22,37 @@ export default function AddExpenseForm() {
     reset,
     watch,
     setValue,
-    setError,
-  } = useForm<ExpenseFormData>({
-    resolver: zodResolver(expenseSchema),
+  } = useForm<InvestmentFormData>({
+    resolver: zodResolver(investmentSchema),
   });
+  console.log(errors, "errors");
+
   // Add Expense
   const addMutation = useMutation({
-    mutationFn: (expenseObject: ExpenseFormData) => {
+    mutationFn: (expenseObject: InvestmentFormData) => {
       const payload = {
         ...expenseObject,
         amount: Number(expenseObject.amount),
       };
-      return expenses.addExpense(payload);
+      return investments.addInvestment(payload);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["expenses"] });
-      router.push(AppRoutes.EXPENSESDBOARD);
+      queryClient.invalidateQueries({ queryKey: ["investments"] });
+      router.push(AppRoutes.INVESTMENTSDBOARD);
     },
     onError: () => {
-      setError("amount", { message: actionsMessages.expenseAddError });
+      console.log(actionsMessages.investmentAddError);
     },
   });
-  const onSubmit = (data: ExpenseFormData) => {
+  const onSubmit = (data: InvestmentFormData) => {
     addMutation.mutate(data);
     reset();
   };
   const selectedCategory = watch("category");
-  const subCategoryOptions =
-    CategorySubCategoryMap[selectedCategory as Category] || [];
 
   useEffect(() => {
-    if (selectedCategory && CategoryIconMap[selectedCategory]) {
-      setValue("icon", CategoryIconMap[selectedCategory]);
+    if (selectedCategory) {
+      setValue("icon", CategoryIconMap.investment);
     }
   }, [selectedCategory, setValue]);
 
@@ -61,10 +60,10 @@ export default function AddExpenseForm() {
     <View className="flex gap-y-3 my-4">
       <Snackbar
         visible={addMutation.isSuccess}
-        onDismiss={() => router.push(AppRoutes.EXPENSESDBOARD)}
+        onDismiss={() => router.push(AppRoutes.INVESTMENTSDBOARD)}
         duration={3000}
       >
-        {actionsMessages.expenseAddSuccess}
+        {actionsMessages.investmentAddSuccess}
       </Snackbar>
       <Controller
         control={control}
@@ -98,7 +97,7 @@ export default function AddExpenseForm() {
             <View className="h-fit absolute left-0 top-1/2 -translate-y-1/2 w-fit p-4 shadow-md">
               {selectedCategory ? (
                 <Avatar.Icon
-                  icon={CategoryIconMap[selectedCategory]}
+                  icon={CategoryIconMap["investment"]}
                   size={48}
                   style={{ backgroundColor: "#008000" }}
                 />
@@ -131,7 +130,7 @@ export default function AddExpenseForm() {
             onValueChange={(itemValue) => onChange(itemValue)}
           >
             <Picker.Item label="Select category..." value="" />
-            {Object.values(Category).map((category) => (
+            {Object.values(InvestmentCategory).map((category) => (
               <Picker.Item
                 key={category}
                 label={category
@@ -145,23 +144,16 @@ export default function AddExpenseForm() {
       />
       <Controller
         control={control}
-        name="sub_category"
+        name="comment"
         render={({ field: { onChange, value } }) => (
-          <Picker
-            selectedValue={value}
-            onValueChange={(itemValue) => onChange(itemValue)}
-          >
-            <Picker.Item label="Select sub category..." value="" />
-            {subCategoryOptions?.map((subCategory) => (
-              <Picker.Item
-                key={subCategory}
-                label={subCategory
-                  .replace(/-/g, " ")
-                  .replace(/\b\w/g, (c) => c.toUpperCase())}
-                value={subCategory}
-              />
-            ))}
-          </Picker>
+          <View>
+            <TextInput
+              placeholder="Enter comment about the investment"
+              textContentType="name"
+              value={value}
+              onChangeText={(val) => onChange(val)}
+            />
+          </View>
         )}
       />
       <Button

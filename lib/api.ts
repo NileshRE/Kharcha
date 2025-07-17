@@ -18,8 +18,8 @@ class Expenses {
 
     // Server-side total sum
     const { data: sumData, error: sumError } = await supabase.rpc(
-      "get_total_expense",
-      { category: category ?? null }
+      "get_total_expenses",
+      { p_category: category || null }
     );
 
     if (sumError) throw sumError;
@@ -50,18 +50,34 @@ class Expenses {
 }
 
 class Investments {
-  async fetchInvestment(category: string) {
-    const query = supabase
+  async fetchInvestment(category?: string) {
+    let query = supabase
       .from("investments")
       .select("*")
       .order("created_at", { ascending: false });
+
     if (category) {
-      query.eq("category", category);
+      query = query.eq("category", category);
     }
-    const { data, error } = await query;
-    if (error) throw error;
-    return data;
+
+    const { data: investmentsData, error: investmentError } = await query;
+
+    if (investmentError) throw investmentError;
+
+    // Server-side total sum
+    const { data: sumData, error: sumError } = await supabase.rpc(
+      "get_total_investments",
+      { p_category: category || null }
+    );
+
+    if (sumError) throw sumError;
+
+    return {
+      investments: investmentsData,
+      totalAmount: sumData,
+    };
   }
+
   async addInvestment(expenseObject: InvestmentAddType) {
     const { data, error } = await supabase
       .from("investments")

@@ -8,7 +8,8 @@ import {
   LoadingState,
 } from "@/components/ui-states";
 import useInvestment from "@/hooks/useInvestment";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, ScrollView, Text, View } from "react-native";
+import { Card } from "react-native-paper";
 
 export default function DashboardInvestment() {
   const {
@@ -19,7 +20,7 @@ export default function DashboardInvestment() {
     selectedCategory,
     categoryData,
     categoryLoading,
-    // addMutation,
+    navigateToAdd,
   } = useInvestment();
   if (investmentError) return <ErrorState />;
   return (
@@ -44,25 +45,33 @@ export default function DashboardInvestment() {
       </ScrollView>
       {investmentLoading ? (
         <LoadingState />
-      ) : investmentData?.length === 0 ? (
+      ) : investmentData?.investments?.length === 0 ? (
         <EmptyState type="Investments" />
       ) : (
         <FlatList
-          data={investmentData}
+          data={investmentData?.investments}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <ExpenseCard
               icon={item.icon}
               amount={item.amount}
               category={item.category}
-              subcategory={item.subCategory}
+              subcategory={item.comment}
               date={item.created_at}
               mode={item.mode}
             />
           )}
         />
       )}
-      <FloatingCTA handleAddExp={() => {}} />
+      <Card className="absolute bottom-4 w-full">
+        <Card.Title title="Total" />
+        <Card.Content>
+          <Text className="font-semibold text-xl">
+            ₹ {investmentData?.totalAmount} /-
+          </Text>
+        </Card.Content>
+      </Card>
+      <FloatingCTA handleAddExp={navigateToAdd} />
     </View>
   );
 }

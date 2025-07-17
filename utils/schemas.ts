@@ -1,5 +1,11 @@
 import { z } from "zod";
-import { Category, CategoryIcon, PaymentMode, SubCategory } from "./enums";
+import {
+  Category,
+  CategoryIcon,
+  InvestmentCategory,
+  PaymentMode,
+  SubCategory,
+} from "./enums";
 import { CategorySubCategoryMap } from "./utlis";
 
 const expenseSchema = z
@@ -10,7 +16,9 @@ const expenseSchema = z
       .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
         message: "Amount must be a positive number",
       }),
-    mode: z.enum(PaymentMode),
+    mode: z.enum(PaymentMode, {
+      error: "Payment mode is required",
+    }),
     category: z.enum(Category),
     sub_category: z.enum(SubCategory),
     icon: z.enum(CategoryIcon),
@@ -29,4 +37,21 @@ const expenseSchema = z
 
 type ExpenseFormData = z.infer<typeof expenseSchema>;
 
-export { ExpenseFormData, expenseSchema };
+const investmentSchema = z.object({
+  amount: z
+    .string()
+    .min(1, "Amount is required")
+    .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+      message: "Amount must be a positive number",
+    }),
+  mode: z.enum(PaymentMode, {
+    error: "Payment mode is required",
+  }),
+  category: z.enum(InvestmentCategory),
+  icon: z.enum(CategoryIcon),
+  comment: z.string().optional(),
+});
+
+type InvestmentFormData = z.infer<typeof investmentSchema>;
+
+export { ExpenseFormData, expenseSchema, InvestmentFormData, investmentSchema };
