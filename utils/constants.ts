@@ -91,114 +91,13 @@ const incomeData = [
   },
 ];
 
-const outstandingData = [
-  {
-    id: "1",
-    icon: "arrow-up", // You gave money
-    amount: 3000,
-    category: "Lent",
-    subCategory: "Lent to Ramesh for rent",
-    date: "02 May 25",
-    mode: "Cash",
-    status: "Pending",
-  },
-  {
-    id: "2",
-    icon: "arrow-down", // You owe money
-    amount: 1500,
-    category: "Borrowed",
-    subCategory: "Borrowed from Suresh for grocery",
-    date: "04 May 25",
-    mode: "UPI",
-    status: "Pending",
-  },
-  {
-    id: "3",
-    icon: "arrow-up",
-    amount: 1000,
-    category: "Lent",
-    subCategory: "Lent to Ankit for travel",
-    date: "01 May 25",
-    mode: "Online",
-    status: "Completed",
-  },
-  {
-    id: "4",
-    icon: "arrow-down",
-    amount: 2000,
-    category: "Borrowed",
-    subCategory: "Borrowed from Dad for medical bills",
-    date: "28 April 25",
-    mode: "Cash",
-    status: "Completed",
-  },
-  {
-    id: "5",
-    icon: "arrow-up",
-    amount: 500,
-    category: "Lent",
-    subCategory: "Lent to office colleague",
-    date: "06 May 25",
-    mode: "UPI",
-    status: "Pending",
-  },
-  {
-    id: "6",
-    icon: "arrow-down",
-    amount: 750,
-    category: "Borrowed",
-    subCategory: "Took advance from friend for dinner",
-    date: "07 May 25",
-    mode: "Cash",
-    status: "Pending",
-  },
-  {
-    id: "7",
-    icon: "arrow-up",
-    amount: 1200,
-    category: "Lent",
-    subCategory: "Lent to cousin for shopping",
-    date: "03 May 25",
-    mode: "Card",
-    status: "Pending",
-  },
-  {
-    id: "8",
-    icon: "arrow-down",
-    amount: 1800,
-    category: "Borrowed",
-    subCategory: "Loan from Rahul for mobile recharge",
-    date: "05 May 25",
-    mode: "Online",
-    status: "Completed",
-  },
-  {
-    id: "9",
-    icon: "arrow-up",
-    amount: 2200,
-    category: "Lent",
-    subCategory: "Lent to friend for trip",
-    date: "08 May 25",
-    mode: "UPI",
-    status: "Pending",
-  },
-  {
-    id: "10",
-    icon: "arrow-down",
-    amount: 900,
-    category: "Borrowed",
-    subCategory: "Took loan from brother",
-    date: "09 May 25",
-    mode: "Cash",
-    status: "Pending",
-  },
-];
-
-export { incomeData, outstandingData };
+export { incomeData };
 
 export const actionsMessages = {
   expenseAddSuccess: "Successfully Added New Expense!",
   expenseAddError: "Unable to add expense!",
   investmentAddSuccess: "Successfully Added New Investment!",
   investmentAddError: "Unable to add investment!",
+  outstandingsAddSuccess: "Successfully Added New Outstanding!",
+  outstandingsAddError: "Unable to add outstandings!",
 };

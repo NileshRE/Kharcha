@@ -44,6 +44,17 @@ export default function RootLayout() {
             headerRight: () => <HeaderRightButtons />,
           }}
         />
+        <Stack.Screen
+          name="add/outstandings/index"
+          options={{
+            title: "Add Outstandings",
+            headerStyle: {
+              backgroundColor: "#008000",
+            },
+            headerTintColor: "#fff",
+            headerRight: () => <HeaderRightButtons />,
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   );

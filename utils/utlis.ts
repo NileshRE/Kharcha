@@ -1,4 +1,10 @@
-import { Category, CategoryIcon, SubCategory } from "./enums";
+import {
+  Category,
+  CategoryIcon,
+  OutstandingCategory,
+  OutstandingIcon,
+  SubCategory,
+} from "./enums";
 
 export const CategorySubCategoryMap: Record<Category, SubCategory[]> = {
   [Category.FOOD]: [
@@ -89,3 +95,9 @@ export const CategoryIconMap: Record<Category, CategoryIcon> = {
   [Category.PETS]: CategoryIcon.PET,
   [Category.OTHER]: CategoryIcon.HELP,
 };
+
+export const OutstandingIconMap: Record<OutstandingCategory, OutstandingIcon> =
+  {
+    [OutstandingCategory.LENT]: OutstandingIcon.LENT,
+    [OutstandingCategory.BORROWED]: OutstandingIcon.BORROWED,
+  };

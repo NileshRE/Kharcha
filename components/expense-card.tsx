@@ -1,3 +1,4 @@
+import { OutstandingCategory } from "@/utils/enums";
 import { FontAwesome } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import { Avatar } from "react-native-paper";
@@ -35,7 +36,15 @@ export default function ExpenseCard({
       />
       <View className="flex flex-row justify-between items-start flex-1">
         <View>
-          <Text className="font-bold text-xl">₹ {amount}</Text>
+          <Text
+            className={`font-bold text-xl ${
+              status === OutstandingCategory.LENT
+                ? "text-green-500"
+                : "text-red-500"
+            }`}
+          >
+            ₹ {amount}
+          </Text>
           <Text className="text-lg text-gray-700 font-medium capitalize">
             {category}
           </Text>

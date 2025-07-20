@@ -1,4 +1,4 @@
-import AddExpenseForm from "@/components/add-expense";
+import AddExpenseForm from "@/components/Forms/add-expense";
 import { View } from "react-native";
 
 export default function AddExpensePage() {

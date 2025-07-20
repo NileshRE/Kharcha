@@ -1,4 +1,4 @@
-import AddInvestmentForm from "@/components/add-investment";
+import AddInvestmentForm from "@/components/Forms/add-investment";
 import { View } from "react-native";
 
 export default function AddInvestmentPage() {

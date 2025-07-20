@@ -6,6 +6,7 @@ enum AppRoutes {
   INCOMESDBOARD = "/dashboard/income",
   ADDEXPENSES = "/add/expense",
   ADDINVESTMENTS = "/add/investment",
+  ADDOUTSTANDINGS = "/add/outstandings",
   LOGIN = "/login",
   PROFILE = "/profile",
   NOTIFICATION = "/notification",
@@ -19,6 +20,21 @@ enum PaymentMode {
   CARD = "card",
   NETBANKING = "net-banking",
   BANK = "bank",
+}
+
+enum OutstandingStatus {
+  PENDING = "pending",
+  COMPLETED = "completed",
+}
+
+enum OutstandingCategory {
+  LENT = "lent",
+  BORROWED = "borrowed",
+}
+
+enum OutstandingIcon {
+  LENT = "arrow-up",
+  BORROWED = "arrow-down",
 }
 
 enum Category {
@@ -120,6 +136,9 @@ export {
   Category,
   CategoryIcon,
   InvestmentCategory,
+  OutstandingCategory,
+  OutstandingIcon,
+  OutstandingStatus,
   PaymentMode,
   SubCategory,
 };
