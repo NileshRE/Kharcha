@@ -23,31 +23,9 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
-          name="add/expense/index"
+          name="add/index"
           options={{
-            title: "Add Expense",
-            headerStyle: {
-              backgroundColor: "#008000",
-            },
-            headerTintColor: "#fff",
-            headerRight: () => <HeaderRightButtons />,
-          }}
-        />
-        <Stack.Screen
-          name="add/investment/index"
-          options={{
-            title: "Add Investment",
-            headerStyle: {
-              backgroundColor: "#008000",
-            },
-            headerTintColor: "#fff",
-            headerRight: () => <HeaderRightButtons />,
-          }}
-        />
-        <Stack.Screen
-          name="add/outstandings/index"
-          options={{
-            title: "Add Outstandings",
+            title: "Chat & Add",
             headerStyle: {
               backgroundColor: "#008000",
             },

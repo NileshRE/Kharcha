@@ -62,6 +62,7 @@ export default function DashboardOutstanding() {
               date={item.created_at}
               mode={item.mode}
               status={item.category}
+              type="Outstandings"
             />
           )}
         />

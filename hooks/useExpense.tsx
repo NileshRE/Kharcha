@@ -1,4 +1,5 @@
 import { Expenses } from "@/lib/api";
+import { AppRoutes } from "@/utils/enums";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -26,7 +27,7 @@ const useExpense = () => {
   });
 
   const navigateToAddExpense = () => {
-    router.push("/add/expense");
+    router.push(AppRoutes.ADDROUTE);
   };
   return {
     expenseData,

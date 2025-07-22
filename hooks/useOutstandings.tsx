@@ -27,7 +27,7 @@ const useOutstandings = () => {
     queryKey: ["outstandingsCategory"],
   });
   const navigateToAdd = () => {
-    router.push(AppRoutes.ADDOUTSTANDINGS);
+    router.push(AppRoutes.ADDROUTE);
   };
   return {
     outstandingsData,

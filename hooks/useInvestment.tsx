@@ -27,7 +27,7 @@ const useInvestment = () => {
     queryKey: ["invcategory"],
   });
   const navigateToAdd = () => {
-    router.push(AppRoutes.ADDINVESTMENTS);
+    router.push(AppRoutes.ADDROUTE);
   };
   return {
     investmentData,

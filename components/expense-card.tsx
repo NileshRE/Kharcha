@@ -11,6 +11,7 @@ export default function ExpenseCard({
   date,
   mode,
   status,
+  type,
 }: {
   icon: any;
   amount: number;
@@ -18,6 +19,7 @@ export default function ExpenseCard({
   subcategory: string;
   date: string;
   mode: string;
+  type?: string;
   status?: string;
 }) {
   const dateFormatted = new Date(date).toLocaleDateString("en-IN", {
@@ -38,9 +40,11 @@ export default function ExpenseCard({
         <View>
           <Text
             className={`font-bold text-xl ${
-              status === OutstandingCategory.LENT
-                ? "text-green-500"
-                : "text-red-500"
+              type === "Outstandings"
+                ? status === OutstandingCategory.LENT
+                  ? "text-green-500"
+                  : "text-red-500"
+                : ""
             }`}
           >
             ₹ {amount}
