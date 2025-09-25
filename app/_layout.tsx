@@ -16,7 +16,7 @@ export default function RootLayout() {
           options={{
             title: "Home",
             headerStyle: {
-              backgroundColor: "#008000",
+              backgroundColor: "#16a34a",
             },
             headerTintColor: "#fff",
             headerRight: () => <HeaderRightButtons />,

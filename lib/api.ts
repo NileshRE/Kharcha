@@ -1,6 +1,4 @@
-import { OutstandingsFormData } from "@/utils/schemas";
 import { supabase } from "@/utils/supabase";
-import { ExpenseAddType, InvestmentAddType } from "@/utils/types";
 
 class Expenses {
   async fetchExpense(category?: string) {
@@ -30,11 +28,6 @@ class Expenses {
       totalAmount: sumData,
     };
   }
-  async addExpense(object: ExpenseAddType) {
-    const { data, error } = await supabase.from("expenses").insert(object);
-    if (error) throw error;
-    return data;
-  }
   async fetchExpCategories() {
     const { data, error } = await supabase
       .from("expenses")
@@ -46,52 +39,22 @@ class Expenses {
     const uniqueCategories = [...new Set(data.map((item) => item.category))];
     return uniqueCategories;
   }
-}
+  async addExpenseToDB(expense) {
+    const { data, error } = await supabase.from("expenses").insert({
+      amount: expense.amount,
+      mode: expense.mode_of_payment,
+      category: expense.category,
+      sub_category: expense.sub_category,
+      recurring: expense.recurring,
+      recurring_type: expense.recurring_type,
+    });
 
-class Investments {
-  async fetchInvestment(category?: string) {
-    let query = supabase
-      .from("investments")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (category) {
-      query = query.eq("category", category);
+    if (error) {
+      console.error("DB Insert Error:", error);
+      throw error;
     }
 
-    const { data: investmentsData, error: investmentError } = await query;
-
-    if (investmentError) throw investmentError;
-
-    // Server-side total sum
-    const { data: sumData, error: sumError } = await supabase.rpc(
-      "get_total_investments",
-      { p_category: category || null }
-    );
-
-    if (sumError) throw sumError;
-
-    return {
-      investments: investmentsData,
-      totalAmount: sumData,
-    };
-  }
-
-  async addInvestment(object: InvestmentAddType) {
-    const { data, error } = await supabase.from("investments").insert(object);
-    if (error) throw error;
     return data;
-  }
-  async fetchInvCategories() {
-    const { data, error } = await supabase
-      .from("investments")
-      .select("category")
-      .neq("category", null);
-
-    if (error) throw error;
-
-    const uniqueCategories = [...new Set(data.map((item) => item.category))];
-    return uniqueCategories;
   }
 }
 
@@ -123,11 +86,6 @@ class Outstandings {
       totalAmount: sumData,
     };
   }
-  async addOutstanding(object: OutstandingsFormData) {
-    const { data, error } = await supabase.from("outstandings").insert(object);
-    if (error) throw error;
-    return data;
-  }
   async fetchOutstandingCategories() {
     const { data, error } = await supabase
       .from("outstandings")
@@ -140,4 +98,34 @@ class Outstandings {
     return uniqueCategories;
   }
 }
-export { Expenses, Investments, Outstandings };
+
+class ChatService {
+  async addChatsToDB(chat: string, aiResponse: string) {
+    const { data, error } = await supabase.from("chats").insert({
+      chat: chat,
+      ai_response: aiResponse,
+    });
+
+    if (error) {
+      console.error("DB Insert Error:", error);
+      throw error;
+    }
+
+    return data;
+  }
+
+  async fetchChats() {
+    const { data, error } = await supabase
+      .from("chats")
+      .select("*")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      console.error("DB Fetch Error:", error);
+      throw error;
+    }
+
+    return data;
+  }
+}
+export { ChatService, Expenses, Outstandings };

@@ -1,10 +1,14 @@
-import { OutstandingCategory } from "@/utils/enums";
-import { FontAwesome } from "@expo/vector-icons";
+import {
+  CategoryIcon,
+  CategoryIconMap,
+  OutstandingCategory,
+  PaymentModesIcon,
+  PaymentModesIconMap,
+} from "@/utils/enums";
 import { Text, View } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Icon } from "react-native-paper";
 
 export default function ExpenseCard({
-  icon,
   amount,
   category,
   subcategory,
@@ -13,7 +17,6 @@ export default function ExpenseCard({
   status,
   type,
 }: {
-  icon: any;
   amount: number;
   category: string;
   subcategory: string;
@@ -22,20 +25,17 @@ export default function ExpenseCard({
   type?: string;
   status?: string;
 }) {
-  const dateFormatted = new Date(date).toLocaleDateString("en-IN", {
-    weekday: "short",
-    month: "short",
-    day: "2-digit",
-    year: "2-digit",
-  });
+  const dateObj = new Date(date);
+  const dateFormatted = `${String(dateObj.getDate()).padStart(2, "0")}/${String(
+    dateObj.getMonth() + 1
+  ).padStart(2, "0")}/${String(dateObj.getFullYear()).slice(-2)}`;
+
+  const iconCategoryMap = CategoryIconMap[category] || CategoryIcon.HELP;
+  const iconModeMap =
+    PaymentModesIconMap[mode.toLowerCase()] || PaymentModesIcon.OTHER;
 
   return (
-    <View className="p-4 bg-white rounded-md shadow-md flex flex-row items-center gap-4 my-2">
-      <Avatar.Icon
-        icon={icon}
-        size={32}
-        style={{ backgroundColor: "#008000" }}
-      />
+    <View className="p-4 bg-white rounded-lg shadow-lg flex flex-row items-center gap-4 my-2">
       <View className="flex flex-row justify-between items-start flex-1">
         <View>
           <Text
@@ -49,18 +49,17 @@ export default function ExpenseCard({
           >
             ₹ {amount}
           </Text>
-          <Text className="text-lg text-gray-700 font-medium capitalize">
-            {category}
-          </Text>
-          <Text className=" text-gray-500 capitalize">{subcategory}</Text>
+          <View className="flex flex-row items-center gap-x-2">
+            <Icon source={iconCategoryMap} size={20} color="#2563eb" />
+            <Text className="text-lg text-gray-700 font-medium capitalize">
+              {category}
+            </Text>
+          </View>
+          <Text className="text-gray-500 capitalize">{subcategory}</Text>
         </View>
         <View className="items-end">
-          <Text className="mb-1">{dateFormatted}</Text>
-          {mode === "online" ? (
-            <FontAwesome name="mobile" size={24} color="orange" />
-          ) : (
-            <FontAwesome name="money" size={24} color="green" />
-          )}
+          <Text className="mb-2 text-gray-500 text-pur">{dateFormatted}</Text>
+          <Icon source={iconModeMap} size={20} color="#6b7280" />
         </View>
       </View>
     </View>

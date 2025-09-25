@@ -14,7 +14,7 @@ export default function DashboardLayout() {
       screenOptions={({ route }) => ({
         tabBarLabel: formatLabel(route.name),
         tabBarScrollEnabled: true,
-        tabBarActiveTintColor: "#008000",
+        tabBarActiveTintColor: "#16a34a",
         tabBarLabelStyle: { fontWeight: "bold", fontSize: 14 },
         tabBarIndicatorStyle: { backgroundColor: "#008000" },
         tabBarStyle: {
@@ -24,9 +24,7 @@ export default function DashboardLayout() {
       })}
     >
       <TopTabs.Screen name="expenses" />
-      <TopTabs.Screen name="investments" />
       <TopTabs.Screen name="outstandings" />
-      <TopTabs.Screen name="income" />
       <TopTabs.Screen name="tools" />
     </TopTabs>
   );

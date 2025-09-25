@@ -101,3 +101,34 @@ export const actionsMessages = {
   outstandingsAddSuccess: "Successfully Added New Outstanding!",
   outstandingsAddError: "Unable to add outstandings!",
 };
+
+export const questionFlow = {
+  initial: {
+    question: "What do you want to add?",
+    options: ["Expense", "Outstanding", "Investment", "Income"],
+  },
+  Expense: [
+    { key: "description", question: "What did you spend on?" },
+    { key: "amount", question: "How much did you spend?" },
+    { key: "type", question: "Is it Personal or Business?" },
+    { key: "isRecurring", question: "Is this a recurring expense?" },
+    { key: "date", question: "What's the date of the expense?" },
+  ],
+  Income: [
+    { key: "source", question: "What is the source of income?" },
+    { key: "amount", question: "How much did you earn?" },
+    { key: "date", question: "What's the date of the income?" },
+  ],
+  Investment: [
+    { key: "investmentType", question: "What type of investment is this?" },
+    { key: "amount", question: "How much did you invest?" },
+    { key: "platform", question: "Where did you invest?" },
+    { key: "date", question: "What's the investment date?" },
+  ],
+  Outstanding: [
+    { key: "toWhom", question: "To whom is the outstanding amount?" },
+    { key: "amount", question: "How much is the outstanding amount?" },
+    { key: "dueDate", question: "What's the due date?" },
+    { key: "category", question: "Is it rent, emi, loan, etc.?" },
+  ],
+};

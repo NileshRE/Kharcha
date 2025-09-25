@@ -9,7 +9,6 @@ import {
 } from "@/components/ui-states";
 import useExpense from "@/hooks/useExpense";
 import { FlatList, ScrollView, Text, View } from "react-native";
-import { Card } from "react-native-paper";
 
 export default function Expenses() {
   const {
@@ -44,6 +43,11 @@ export default function Expenses() {
           ))
         )}
       </ScrollView>
+      <View className="w-full my-2">
+        <Text className="text-lg p-4 rounded-xl shadow-lg bg-green-600 text-white">
+          Total: ₹ {expenseData?.totalAmount} /-
+        </Text>
+      </View>
       {expenseLoading ? (
         <LoadingState />
       ) : expenseData?.expenses?.length === 0 ? (
@@ -55,7 +59,6 @@ export default function Expenses() {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <ExpenseCard
-              icon={item.icon}
               amount={item.amount}
               category={item.category}
               subcategory={item.sub_category}
@@ -65,14 +68,6 @@ export default function Expenses() {
           )}
         />
       )}
-      <Card className="absolute bottom-4 w-full">
-        <Card.Title title="Total" />
-        <Card.Content>
-          <Text className="font-semibold text-xl">
-            ₹ {expenseData?.totalAmount} /-
-          </Text>
-        </Card.Content>
-      </Card>
 
       <FloatingCTA handleAddExp={navigateToAddExpense} />
     </View>
