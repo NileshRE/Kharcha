@@ -13,6 +13,8 @@
     "app/dashboard/_layout.jsx",
     "app/dashboard/expenses.jsx",
     "app/dashboard/investments.jsx",
-    "app/home/profile.jsx"
+    "app/home/profile.jsx",
+    "utils/schemas.ts",
+    "app/login/index.tsx"
   ]
 }

@@ -79,6 +79,11 @@ enum PaymentModesIcon {
   WALLET = "wallet",
   OTHER = "help",
 }
+enum GenderEnum {
+  MALE = "male",
+  FEMALE = "female",
+  OTHER = "other",
+}
 
 const PaymentModesIconMap: Record<string, string> = {
   cash: PaymentModesIcon.CASH,
@@ -93,6 +98,7 @@ export {
   AppRoutes,
   CategoryIcon,
   CategoryIconMap,
+  GenderEnum,
   OutstandingCategory,
   OutstandingIcon,
   OutstandingStatus,
